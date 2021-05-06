@@ -1,6 +1,9 @@
-from setuptools import setup, find_packages  # Always prefer setuptools over distutils
-from codecs import open  # To use a consistent encoding
 from os import path
+
+from setuptools import (  # Always prefer setuptools over distutils
+    find_packages,
+    setup,
+)
 
 here = path.abspath(path.dirname(__file__))
 
@@ -9,12 +12,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='''ckanext-dcatapit''',
+    name='ckanext-dcatapit',
 
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='1.1.0a',
+    version='2.0.0a',
 
     description='''CKAN extension for the Italian Open Data Portals (DCAT_AP-IT).''',
     long_description=long_description,
@@ -42,8 +45,9 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 
     # What does your project relate to?
@@ -52,14 +56,16 @@ setup(
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
-	
-	namespace_packages=['ckanext', 'ckanext.dcatapit'],
+
+    namespace_packages=['ckanext', 'ckanext.dcatapit'],
 
     # List run-time dependencies here.  These will be installed by pip when your
     # project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/technical.html#install-requires-vs-requirements-files
-    install_requires=[],
+    install_requires=[
+        'ckan>=2.9'
+    ],
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
@@ -80,7 +86,7 @@ setup(
     entry_points='''
         [ckan.plugins]
         dcatapit_pkg=ckanext.dcatapit.plugin:DCATAPITPackagePlugin
-        dcatapit_org=ckanext.dcatapit.plugin:DCATAPITOrganizationPlugin        
+        dcatapit_org=ckanext.dcatapit.plugin:DCATAPITOrganizationPlugin
         dcatapit_config=ckanext.dcatapit.plugin:DCATAPITConfigurerPlugin
         dcatapit_harvester=ckanext.dcatapit.dcat.harvester:DCATAPITHarvesterPlugin
         dcatapit_csw_harvester=ckanext.dcatapit.harvesters.csw_harvester:DCATAPITCSWHarvester
